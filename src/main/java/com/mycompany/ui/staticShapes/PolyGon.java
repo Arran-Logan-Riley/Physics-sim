@@ -1,10 +1,13 @@
-package com.mycompany.ui;
+package com.mycompany.ui.staticShapes;
+
+import com.mycompany.ui.Collidable;
+import com.mycompany.ui.CollisionEvent;
 
 import java.awt.*;
 import java.util.Arrays;
 
 /**
- * The polygon class is what all static objects in my simulation are made of. The special functionality of this class
+ * The polygon class is what all static objects in my simulation are made of The special functionality of this class
  * is that it can dynamically draw a boundary box just from the coordinates specified from FirstWindow.
  */
 public class PolyGon implements Collidable {
@@ -67,6 +70,9 @@ public class PolyGon implements Collidable {
         paintColor();
     }
 
+    /**
+     * paints the polygon a specified color
+     */
     public void paintColor(){
         this.color = colorOfObj;
     }

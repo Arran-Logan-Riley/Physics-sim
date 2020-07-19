@@ -1,20 +1,37 @@
-package com.mycompany.ui;
+package com.mycompany.ui.movingShapes;
+
+import com.mycompany.ui.Collidable;
+import com.mycompany.ui.CollisionEvent;
+import com.mycompany.ui.CollisionManager;
+import com.mycompany.ui.MovingObject;
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.staticShapes.DisposalArea;
 
 import java.awt.*;
 
 /**
- * The square is a class that is a moving and collidable object. This class is similar to the ball class
+ * The square is a class that is a moving and collidable object This class is similar to the ball class
  * although it has extra properties like crushable and trapdoorStatus
  */
-public class Square extends MovingObject implements Collidable{
+public class Square extends MovingObject implements Collidable {
 
+    /**
+     * width of the shape
+     */
     private int w= 10;
+    /**
+     * Height of the shape
+     */
     private int h =10;
     private boolean crushable;      //if this is true it can be crushed
     private boolean trapDoorStatus; //if this is true it will be let through the trap door
 
     public Color color;
 
+    /**
+     * This method paints the shape
+     * @param g graphics
+     */
     public void paintSquare(Graphics g) {
         g.setColor(color);
         g.fillRect(getX(), getY(), w, h);
@@ -25,12 +42,19 @@ public class Square extends MovingObject implements Collidable{
         return new Rectangle(getX(), getY(), w, h);
     }
 
+    /**
+     * This method moves the shape
+     */
     @Override
     public void move() {
         super.move();
         CollisionManager.handleCollisions(this);
     }
 
+    /**
+     * This method deals with collisions
+     * @param collisionEvent this is for identifying the eventsoruce
+     */
     @Override
     public void handleCollision(CollisionEvent collisionEvent) {
         if (collisionEvent.getSource().equals(CollisionEvent.WALLSEVENTSOURCE)) {
@@ -41,6 +65,11 @@ public class Square extends MovingObject implements Collidable{
             Collidable eventSource = (Collidable) collisionEvent.getSource();
             //Collifable specifics
             //and possibly a movingobject
+            if(eventSource instanceof DisposalArea){
+                this.w = 0;
+                this.h = 0;
+                Thread.currentThread().interrupt();
+            }
             if (eventSource instanceof MovingObject) {
                 //it is a moving object
                 //MovingObject movingObject=(MovingObject)eventSource;

@@ -1,4 +1,9 @@
-package com.mycompany.ui;
+package com.mycompany.ui.staticShapes;
+
+import com.mycompany.ui.Collidable;
+import com.mycompany.ui.CollisionEvent;
+import com.mycompany.ui.MovingObject;
+import com.mycompany.ui.movingShapes.Square;
 
 import java.awt.*;
 
@@ -8,7 +13,7 @@ import java.awt.*;
  * When scanned square (scanned by the trapdoor scanner) has a trapdoor status of true it will allow the
  * square to pass through, instead of going down the conveyor as it is technically a conveyor.
  */
-public class TrapDoor extends Convayor implements Collidable{
+public class TrapDoor extends Convayor implements Collidable {
 
     public TrapDoor(int x, int y, int[] xPoints, int[] yPoints,Color color, String direction ) {
         super(x, y, xPoints, yPoints,color, direction);

@@ -1,12 +1,16 @@
-package com.mycompany.ui;
+package com.mycompany.ui.staticShapes;
+
+import com.mycompany.ui.*;
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.movingShapes.Square;
 
 import java.awt.*;
 
 /**
- * The conveyor moves objects that hit it. depending on what is set by in firstwindow determines what direction the conveyor
+ * The conveyor moves objects that hit it depending on what is set by in firstwindow determines what direction the conveyor
  * will go.
  */
-public class Convayor extends PolyGon implements Collidable{
+public class Convayor extends PolyGon implements Collidable {
     private String direction;
 
     public Convayor(int x, int y, int[] xPoints, int[] yPoints, Color color, String direction) {

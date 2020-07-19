@@ -5,6 +5,10 @@
  */
 package com.mycompany.ui;
 
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.movingShapes.Square;
+import com.mycompany.ui.staticShapes.*;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class CustomPanel extends JPanel
 {
-    private static int i = 0;
+    private static int i = 0; //not needed
     private static List<Ball> balls=new ArrayList<>(); //list of balls
     private static List<PolyGon> polyGons=new ArrayList<>();  //list of polygons
     private static List<Scanner> scanners=new ArrayList<>();
@@ -102,12 +106,14 @@ public class CustomPanel extends JPanel
 //------------------------------------------------------//
 
     /**
-     * This method removes any shape that is passed into it. currently there is an error and it does not work.
-     * This method is called in the disposal area class to remove the object that is passes in.
-     * depending on if its a square or a ball it will behave differently.
+     * This method removes any shape that is passed into it
+     * currently there is an error and it does not work
+     * This method is called in the disposal area class to remove the object that is passes in
+     * depending on if its a square or a ball it will behave differently
+     * This method does not work, but i will leave it in as i spent a long time on it and i think it is pretty cool :)
      * @param shape passed in shape
      */
-    public static void removeShape(MovingObject shape){
+    /*public static void removeShape(MovingObject shape){ //this method does not currently
         if(shape instanceof Square){
             for (Square squaresA: squares
                  ) {
@@ -117,6 +123,7 @@ public class CustomPanel extends JPanel
                         FirstWindow.threads.remove(shape.getiD());
                         CollisionManager.removeCollidable((Collidable) shape);
                         squares.remove(shape);
+                        ((Square) shape).setW(0);
                     }
                 }
             }
@@ -125,16 +132,17 @@ public class CustomPanel extends JPanel
                  ) {
                 if(ballsA == shape){
                     if(FirstWindow.threads.containsKey(shape.getiD())) {
-                        FirstWindow.threads.get(shape.getiD()).interrupt();
+                       FirstWindow.threads.get(shape.getiD()).interrupt();
                         FirstWindow.threads.remove(shape.getiD());
                         CollisionManager.removeCollidable((Collidable) shape);
                         System.out.println(shape.getiD());
                         balls.remove(shape);
+                        ((Ball) shape).setW(0);
                     }
                 }
             }
         }
-    }
+    }*/
 
     public static List<Ball> getBalls() {
         return balls;

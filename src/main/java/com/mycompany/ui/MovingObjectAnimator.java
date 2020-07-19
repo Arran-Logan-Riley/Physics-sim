@@ -39,7 +39,11 @@ public class MovingObjectAnimator implements Runnable{
             try {
                 //move every movePerSec.
                 Thread.sleep(1000/movePerSec);
+
             } catch (InterruptedException ex) {
+                if (Thread.currentThread().isInterrupted()){
+                    return;
+                }
                 System.out.println("Something interrupted me while sleeping...");
             }
         }

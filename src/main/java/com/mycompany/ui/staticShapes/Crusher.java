@@ -1,9 +1,13 @@
-package com.mycompany.ui;
+package com.mycompany.ui.staticShapes;
+
+import com.mycompany.ui.*;
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.movingShapes.Square;
 
 import java.awt.*;
 
 /**
- * The crusher will turn any object with the property crushable==true to the color magenta.
+ * The crusher will turn any object with the property crushable==true to the color magenta
  * This crusable status is set by scanner1.
  */
 public class Crusher extends PolyGon implements Collidable {
@@ -13,7 +17,7 @@ public class Crusher extends PolyGon implements Collidable {
     }
 
     /**
-     * This method will turn the ibject color that has hit it to magenta if it is crushable.
+     * This method will turn the object color that has hit it to magenta if it is crushable
      * @param collisionEvent eventsouce passed in
      */
     @Override
@@ -26,7 +30,10 @@ public class Crusher extends PolyGon implements Collidable {
                // if(eventSource.get)
                 if(((Square) eventSource).getCrushable() == true){
                     ((Square) eventSource).setColor(Color.MAGENTA);
-                }
+                    this.color = ((Square) eventSource).getColor();
+            }
+            }else if(eventSource instanceof Ball){
+                this.color = ((Ball) eventSource).getColor();
             }
         }
     }

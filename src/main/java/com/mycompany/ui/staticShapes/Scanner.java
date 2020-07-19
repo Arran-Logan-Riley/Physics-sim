@@ -1,12 +1,17 @@
-package com.mycompany.ui;
+package com.mycompany.ui.staticShapes;
+
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.Collidable;
+import com.mycompany.ui.CollisionEvent;
+import com.mycompany.ui.movingShapes.Square;
 
 import java.awt.*;
 
 /**
- * The scanner is a polygon with special properties. It is Collidable and will set crushable to true if a blue square hits it.
+ * The scanner is a polygon with special properties It is Collidable and will set crushable to true if a blue square hits it
  * It will require two lists of ints to create its outline.
  */
-public class Scanner extends PolyGon implements Collidable{
+public class Scanner extends PolyGon implements Collidable {
 
 
     /**
@@ -29,9 +34,9 @@ public class Scanner extends PolyGon implements Collidable{
 
 
     /**
-     * If it is an instance of ball it will just teleport the ball to the other side with no major interaction.
+     * If it is an instance of ball it will just teleport the ball to the other side with no major interaction
      * this is the same for the square, unless it is a blue square then it changes the blue
-     * square property of crushable to true. This will be checked by the scanner.
+     * square property of crushable to true. This will be checked by the scanner
      * @param collisionEvent is the parameter used to identify what the eventsource is.
      */
     @Override
@@ -52,6 +57,8 @@ public class Scanner extends PolyGon implements Collidable{
                 if(((Square) eventSource).getColor() == Color.BLUE){
                     ((Square) eventSource).setCrushable(true);
                 }
+            }else if(eventSource instanceof Ball){
+                this.color = ((Ball) eventSource).getColor();
             }
         }
 

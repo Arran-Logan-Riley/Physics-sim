@@ -3,19 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.ui;
+package com.mycompany.ui.movingShapes;
+
+import com.mycompany.ui.Collidable;
+import com.mycompany.ui.CollisionEvent;
+import com.mycompany.ui.CollisionManager;
+import com.mycompany.ui.MovingObject;
+import com.mycompany.ui.staticShapes.DisposalArea;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
- *This is the ball class. THe ball is a moving object and it is collidable.
+ *This is the ball class THe ball is a moving object and it is collidable.
  * @author jnesis
  */
 public class Ball extends MovingObject implements Collidable {
 
+    /**
+     * The width of the shape
+     */
     private int w = 10;
+    /**
+     * The height of the shape
+     */
     private int h = 10;
 
 
@@ -26,11 +38,17 @@ public class Ball extends MovingObject implements Collidable {
         g.fillOval(getX(), getY(), w, h);
     }
 
+    /**
+     * @return returns a rectangle with a X and A Y that comes from moving object it also comes with a height and width
+     */
     @Override
     public Rectangle getBounds() {
         return new Rectangle(getX(), getY(), w, h);
     }
 
+    /**
+     * Move method that comes from the movable class
+     */
     @Override
     public void move() {
         super.move();
@@ -47,6 +65,11 @@ public class Ball extends MovingObject implements Collidable {
             Collidable eventSource = (Collidable) collisionEvent.getSource();
             //Collifable specifics
             //and possibly a movingobject
+            if(eventSource instanceof DisposalArea){
+                this.w = 0;
+                this.h = 0;
+                Thread.currentThread().interrupt();
+            }
             if (eventSource instanceof MovingObject) {
                 //it is a moving object
                 //MovingObject movingObject=(MovingObject)eventSource;

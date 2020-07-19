@@ -5,6 +5,11 @@
  */
 package com.mycompany.ui;
 
+import com.mycompany.ui.movingShapes.Ball;
+import com.mycompany.ui.movingShapes.Square;
+import com.mycompany.ui.staticShapes.*;
+import com.mycompany.ui.staticShapes.Scanner;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -18,7 +23,11 @@ import javax.swing.*;
  */
 public class FirstWindow {
 
-    public static Map<String, Thread > threads = new HashMap<>();
+    /**
+     * This is a HasMap for storing all the threads in, this is so i can delete them later on
+     * I dont think this should be done in FirstWindow.
+     */
+    //public static Map<String, Thread > threads = new HashMap<>();
 
         public final static int CANVAS_WIDTH=800;
         public final static int CANVAS_HEIGHT=800;
@@ -67,6 +76,10 @@ public class FirstWindow {
 
                 //---------------ADD A BALL-----------------------
                 buttonAddBall.addActionListener(new ActionListener() {
+                    /**
+                     * when the actionPerformed method is called it will create a new instance of a ball
+                     * @param e action
+                     */
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         Ball ball=new Ball();
@@ -85,11 +98,16 @@ public class FirstWindow {
                         Thread thread=new Thread(mBall);
                         ball.setiD(CustomPanel.getBalls().size() + "-ball");
                         thread.start();
-                        threads.put(ball.getiD(),thread);
+                        //threads.put(ball.getiD(),thread);
                     }
                 });
                 //---------------ADD A SQUARE-----------------------
                 buttonAddSquare.addActionListener(new ActionListener(){
+                    /**
+                     * when the add square action listiner is called it will run the actionPerferformed method that will add
+                     * a new instance of square to the simulation.
+                     * @param e action
+                     */
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         Square square=new Square();
@@ -109,13 +127,16 @@ public class FirstWindow {
                         Thread thread=new Thread(mSquare);
                         thread.start();
                         square.setiD(CustomPanel.getSquares().size() + "-square");
-                        threads.put(square.getiD(),thread);
-                        System.out.println(threads);
+                        //threads.put(square.getiD(),thread);
                     }
                 });
 
                 //-----------EXIT THE APPLICATION BUTTON-------------
                 buttonExit.addActionListener(new ActionListener() {
+                    /**
+                     * when this method is called it will close the application
+                     * @param e action
+                     */
                     @Override
                     public void actionPerformed(ActionEvent e) {
                        window.dispose();
@@ -147,7 +168,7 @@ public class FirstWindow {
                 //X comes first in the array>
                 PolyGon scannerTop1= new PolyGon(350, 201,new int[]{0,-30,80,50},new int[]{20,50,50,20},Color.white);
                 PolyGon scannerBottom1 = new PolyGon(350, 301,new int[]{0,-30,80,50},new int[]{50,20,20,50},Color.white);
-                Scanner scannerMiddle1 = new Scanner( 350, 241,new int[]{0,0,50,50},new int[]{10,80,80,10},Color.white);
+                Scanner scannerMiddle1 = new com.mycompany.ui.staticShapes.Scanner( 350, 241,new int[]{0,0,50,50},new int[]{10,80,80,10},Color.white);
 
 
                PolyGon trapScannterTop2=new PolyGon(480, 400,new int[]{0,-30,80,50},new int[]{20,50,50,20},Color.white);
