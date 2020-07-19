@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.mycompany.ui"},{"l":"com.mycompany.ui.movingShapes"},{"l":"com.mycompany.ui.staticShapes"}]
